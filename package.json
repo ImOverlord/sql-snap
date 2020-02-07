@@ -1,0 +1,36 @@
+{
+  "name": "sql-snap",
+  "version": "0.0.1",
+  "description": "Tools for running SQL Database Tests",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "url": "git+ssh://git@github.com/ImOverlord/sql-snap.git"
+  },
+  "author": "ImOverlord",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/pg": "^7.14.1",
+    "@types/ws": "^7.2.1",
+    "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "ws": "^7.2.1",
+    "pg": "^7.18.1"
+  },
+  "bugs": {
+    "url": "https://github.com/ImOverlord/sql-snap/issues"
+  },
+  "homepage": "https://github.com/ImOverlord/sql-snap#readme",
+  "keywords": [
+    "SQL",
+    "PG",
+    "Snap",
+    "Test",
+    "Jest"
+  ]
+}
