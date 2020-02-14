@@ -24,12 +24,12 @@ export class SnapClient {
         });
     }
 
-    public send<T>(message: IMessage<string>): Promise<IMessage<QueryResult<T>>> {
+    public send<T>(message: IMessage<string>): Promise<IMessage<T>> {
         return new Promise((resolve, reject) => {
             const id = Date.now().toString();
             message.id = id;
             this.client.send(JSON.stringify(message));
-            this.eventManager.once(`message-${id}`, (message: IMessage<QueryResult<T>>) => {
+            this.eventManager.once(`message-${id}`, (message: IMessage<T>) => {
                 if (message.type === 'error')
                     reject(message);
                 else
@@ -38,8 +38,8 @@ export class SnapClient {
         })
     }
 
-    public query(statement: string) {
-        return this.send({
+    public query<T>(statement: string): Promise<IMessage<QueryResult<T>>> {
+        return this.send<QueryResult<T>>({
             type: 'query',
             data: statement
         });
