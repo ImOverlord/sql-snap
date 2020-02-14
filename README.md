@@ -1,9 +1,6 @@
 # SQL-Snap
 
 [![Build Status](https://travis-ci.org/ImOverlord/sql-snap.svg?branch=master)](https://travis-ci.org/ImOverlord/sql-snap)
-<br />
-
-https://travis-ci.org/ImOverlord/sql-snap.svg?branch=master
 
 ## Install
 
