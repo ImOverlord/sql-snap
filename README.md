@@ -20,3 +20,5 @@ Currently Sql-Snap only works with **pgSQL**.
 
  * Add Support to other SQL types.
  * Use peer dependencies
+ * Create Jest-Preset
+ * Add Tests
