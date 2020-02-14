@@ -2,7 +2,6 @@
 
 import { Server } from 'ws'
 import WebSocket = require("ws");
-import * as http from 'http';
 import { Snap } from './snap';
 import { IMessage } from './Interface/IMessage';
 import { ISnapServerConfig } from './Interface/ISnapServerConfig';
@@ -27,11 +26,11 @@ export class SnapServer {
         })
     }
 
-    private newSocket(ws: WebSocket, request: http.IncomingMessage) {
+    private newSocket(ws: WebSocket): void {
         ws.on('message', this.onMessage.bind({snap: this.snap, ws}))
     }
 
-    private onMessage(this: {snap: Snap, ws: WebSocket}, raw: string) {
+    private onMessage(this: {snap: Snap; ws: WebSocket}, raw: string): void {
         const message: IMessage = JSON.parse(raw);
         if (message.type === 'query') {
             this.snap.query(message.data)

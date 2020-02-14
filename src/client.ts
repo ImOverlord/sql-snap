@@ -14,8 +14,8 @@ export class SnapClient {
         this.eventManager = new EventEmitter;
     }
 
-    public connect() {
-        return new Promise((resolve, reject) => {
+    public connect(): Promise<void> {
+        return new Promise((resolve) => {
             this.client = new WebSocket(this.url);
             this.client.on('message', this.receive.bind(this));
             this.client.on('open', () => {
@@ -45,7 +45,7 @@ export class SnapClient {
         });
     }
 
-    private receive(raw: string) {
+    private receive(raw: string): void {
         const message: IMessage<QueryResult<any>> = JSON.parse(raw);
         this.eventManager.emit(`message-${message.id}`, message);
     }
