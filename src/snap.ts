@@ -22,7 +22,7 @@ export class Snap {
         return this.db.query(statement);
     }
 
-    public runFile(filePath: string) {
+    public runFile(filePath: string): Promise<any> {
         return readFile(filePath)
         .then((content) => {
             return this.db.query(content.toString('utf-8'));

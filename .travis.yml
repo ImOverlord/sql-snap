@@ -1,0 +1,35 @@
+language: node_js
+
+node_js:
+  - '12'
+  - '10'
+  - '8'
+  - node
+
+cache: npm
+
+install:
+  - npm ci
+
+script:
+  - npm run test:lint
+  - npm run build
+
+jobs:
+  include:
+    - stage: npm beta release
+      if: branch = master AND type != pull_request
+      node_js: '10'
+      script:
+        - npm run build
+        - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
+        - npm publish --tag beta
+
+    - stage: npm release
+      if: tag IS present
+      script: npm run build
+      node_js: '10'
+      script:
+        - npm run build
+        - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
+        - node ./scripts/release.js
