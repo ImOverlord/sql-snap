@@ -26,7 +26,7 @@ export class SnapClient {
 
     public send<T>(message: IMessage<string>): Promise<IMessage<T>> {
         return new Promise((resolve, reject) => {
-            const id = Date.now().toString();
+            const id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
             message.id = id;
             this.client.send(JSON.stringify(message));
             this.eventManager.once(`message-${id}`, (message: IMessage<T>) => {
