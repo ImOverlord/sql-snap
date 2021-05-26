@@ -1,7 +1,7 @@
 import WebSocket from 'ws'
 import { IMessage } from './Interface/IMessage';
 import { EventEmitter } from 'events';
-import { QueryResult } from 'pg';
+import { IQueryResult } from './Interface/IQueryResult';
 
 export class SnapClient {
 
@@ -26,7 +26,7 @@ export class SnapClient {
 
     public send<T>(message: IMessage<string>): Promise<IMessage<T>> {
         return new Promise((resolve, reject) => {
-            const id = Date.now().toString();
+            const id = Date.now().toString(); /** @todo Make it more percise */
             message.id = id;
             this.client.send(JSON.stringify(message));
             this.eventManager.once(`message-${id}`, (message: IMessage<T>) => {
@@ -38,57 +38,15 @@ export class SnapClient {
         })
     }
 
-    public query<T>(statement: string): Promise<IMessage<QueryResult<T>>> {
-        return this.send<QueryResult<T>>({
+    public query<T>(statement: string): Promise<IMessage<IQueryResult<T>>> {
+        return this.send<IQueryResult<T>>({
             type: 'query',
             data: statement
         });
     }
 
     private receive(raw: string): void {
-        const message: IMessage<QueryResult<any>> = JSON.parse(raw);
+        const message: IMessage<IQueryResult<any>> = JSON.parse(raw);
         this.eventManager.emit(`message-${message.id}`, message);
     }
 }
-
-// const sqlFile =
-// `
-// SET SCHEMA 'test';
-// INSERT INTO "Users" (email, password, "hashMail") VALUES ('test1@mail.com', 'password', 'mail');
-// INSERT INTO "Users" (email, password, "hashMail") VALUES ('test2@mail.com', 'password', 'mail');
-// SELECT * FROM "Users"
-// SELECT * FROM "UserInfo";
-// `
-
-// const client = new SnapClient('ws://127.0.0.1:3001');
-
-// client.connect()
-// .then(() => {
-//     client.send({
-//         type: 'query',
-//         data: sqlFile
-//     }).then((resp) => {
-//         console.log('SQL File');
-//         console.log(resp);
-//     })
-//     client.send({
-//         type: 'query',
-//         data: `SELECT * FROM "test"."Users" LIMIT 1000`
-//     }).then((resp) => {
-//         console.log('SELECT');
-//         console.log(resp);
-//     })
-// })
-
-
-// const client = new WebSocket('ws://127.0.0.1:3001');
-
-
-
-// client.on('open', function open() {
-//     client.send("Hello #orld");
-// });
-
-// client.on('message', (message) => {
-//     console.log(JSON.parse(message.toString()));
-// })
