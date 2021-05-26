@@ -1,10 +1,9 @@
 # SQL-Snap
 
-[![Build Status](https://travis-ci.org/ImOverlord/sql-snap.svg?branch=master)](https://travis-ci.org/ImOverlord/sql-snap)
-
+[![Build Status](https://travis-ci.org/ImOverlord/sql-snap.svg?branch=master)](https://travis-ci.org/ImOverlord/sql-snap) [![npm version](https://badge.fury.io/js/sql-snap.svg)](https://badge.fury.io/js/sql-snap)
 ## Install
 
-SQL-Snap is available on NPM.
+SQL-Snap is available on [NPM](https://www.npmjs.com/package/sql-snap).
 
 ```bash
 $ npm i -D sql-snap
@@ -16,11 +15,10 @@ Sql-Snap is a simple tool to excute SQL Statement. What makes it usefull is that
 
 With Snap you can set a test sql file, and the run statement before each Tests.
 
-Currently Sql-Snap only works with **pgSQL**.
+Currently Sql-Snap only supports *pgSQL*, and *sqlite*, but you can easily create a new dialect for any sql provider you want.
+
 
 ## RoadMap
 
- * Add Support to other SQL types.
- * Use peer dependencies
- * Create Jest-Preset
- * Add Tests
+ * Add more dialect (mysql, mssql ...)
+

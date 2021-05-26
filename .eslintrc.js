@@ -2,7 +2,8 @@ module.exports = {
   ignorePatterns: [
     "scripts/",
     "docs/",
-    "dist/"
+    "dist/",
+    "example/"
   ],
   root: true,
   parser: '@typescript-eslint/parser',

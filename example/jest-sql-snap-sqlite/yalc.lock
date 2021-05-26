@@ -1,0 +1,11 @@
+{
+  "version": "v1",
+  "packages": {
+    "sql-snap": {
+      "version": "1.0.0",
+      "signature": "9c12228a66e7c8a0fae2c61b2b97a447",
+      "file": true,
+      "replaced": "file:../.."
+    }
+  }
+}
