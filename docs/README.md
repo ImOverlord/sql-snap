@@ -14,11 +14,8 @@ Sql-Snap is a simple tool to excute SQL Statement. What makes it usefull is that
 
 With Snap you can set a test sql file, and the run statement before each Tests.
 
-Currently Sql-Snap only works with **pgSQL**.
+Currently Sql-Snap only supports *pgSQL*, and *sqlite*, but you can easily create a new dialect for any sql provider you want.
 
 ## RoadMap
 
- * Add Support to other SQL types.
- * Use peer dependencies
- * Create Jest-Preset
- * Add Tests
+ * Add more dialect (mysql, mssql ...)

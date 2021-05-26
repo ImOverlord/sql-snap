@@ -7,13 +7,22 @@ You will instanciate the class with the config to connect to the PostGress Datab
 ```ts
 import { Snap } from 'sql-snap';
 
+const snap = new Snap('postgres://user:password@127.0.0.1:5432/test');
+// or
 const snap = new Snap({
-    connectionString: 'postgres://admin:password@127.0.0.1:5432/test'
+    host: '127.0.0.1',
+    port: 5432,
+    username: "user",
+    password: "password",
+    database: "test",
+    dialect: 'pg'
 });
+
+// For Sqlite, in host put the path to the database file
 
 ```
 
-The object passed will used to start a new **pg** connection.
+The object passed will used to start a new database connection.
 
 ## connect
 
@@ -38,7 +47,7 @@ Once snap instanciated, you will be able to connect.
 
 ```ts
 /** Prototype */
-query<T extends object = any>(statement: string): Promise<QueryResult<T>>;
+query<T extends object = any>(statement: string): Promise<IQueryResult<T>>;
 
 snap.query(`SELECT * FROM test.table`)
 .then((result) => {

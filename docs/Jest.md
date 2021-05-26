@@ -4,6 +4,8 @@ Using Snap class alone is pretty useless as it just wraps the db connector. Howe
 
 Using the Server and Client, you just have to start the server when you launch the tests and create a new Client before each tests. Client are very light weight as they just start a WebSocket connection.
 
+You can find an example of using SQL-snap with jest in the examples folder.
+
 ## Setup SQL-Snap in Jest
 
 Jest supports startup and teardown files. You can then set a Environment for each test files.
@@ -20,11 +22,11 @@ import { spawn } from 'child_process';
 export default async() => {
     return new Promise((resolve, reject) => {
         /** run script that start server */
-        const service = spawn(`node`, ['SnapServer.js']);
+        const service = spawn(`node`, ['./tests/snapServer.js']);
         /** save server pid to kill on teardown */
         global['__SNAP_PID__'] = service.pid;
         /** wait for ready message to start tests suite */
-        service.stdout.on('data', (data: Buffer) => {
+        service.stdout.on('data', (data) => {
             const output = data.toString();
             if (output.match(/Ready/))
                 resolve();
@@ -41,9 +43,11 @@ export default async() => {
 const Server = require("sql-snap").SnapServer;
 
 new Server({
-    port: 3001, // port the server should start on
-    dbConfig: { // Config to connect to the database
-        connectionString: 'postgres://Heroes:Lifeaz2019@127.0.0.1:5432/DatabaseTest'
+    port: 3005, // port the server should start on
+    db: { // Config to connect to the database
+        host: './db',
+        database: 'random',
+        dialect: 'sqlite'
     }
 });
 ```
@@ -54,7 +58,6 @@ new Server({
 // sql-snap.env.js
 const nodeEnvironment = require('jest-environment-node');
 const SnapClient = require('sql-snap').SnapClient;
-const setup = require("./setup");
 
 /**
  * SnapEnvironment
@@ -76,8 +79,6 @@ class SnapEnvironment extends nodeEnvironment {
         this.global['snap'] = client;
         /** Connect the client */
         await client.connect();
-        /** Run a setup sql script */
-        await client.query(setup);
     }
 
     /**

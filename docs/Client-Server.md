@@ -23,16 +23,18 @@ interface IMessage<T = any> {
 Server constructor, will ask for an *ISnapServerConfig*
 
 ```ts
-import { ClientConfig } from 'pg';
+import { IDatabaseConfig } from './IDatabaseConfig';
 
-interface ISnapServerConfig {
+export interface ISnapServerConfig {
+    /** port {number}: WebSocket Port to be used */
     port: number;
-    dbConfig: ClientConfig;
+    /** db {string | IDatabaseConfig}: Config to connect to databse */
+    db: string | IDatabaseConfig;
 }
 ```
 
 * port: on which the server will listen
-* dbConfig: Config to connect to the database
+* db: Config to connect to the database
 
 It will then listen for messages, and pass them along to Snap.
 
