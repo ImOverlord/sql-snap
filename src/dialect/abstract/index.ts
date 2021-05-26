@@ -1,9 +1,6 @@
-import { IDatabaseConfig } from "../../Interface/IDatabaseConfig";
 import { IQueryResult } from "../../Interface/IQueryResult";
 
 export abstract class AbstractDialect {
-
-    constructor(config: IDatabaseConfig) { }
 
     public abstract connect(): Promise<void>;
 

@@ -1,4 +1,3 @@
-import { Client, ClientConfig, QueryResult } from 'pg'
 import fs = require("fs");
 import { promisify } from 'util';
 import { IDatabaseConfig } from './Interface/IDatabaseConfig';
@@ -6,8 +5,6 @@ import { AbstractDialect } from './dialect/abstract';
 import { IQueryResult } from './Interface/IQueryResult';
 
 const readFile = promisify(fs.readFile);
-
-const dialects = ['pg', 'sqlite'];
 export class Snap {
 
     private db: AbstractDialect;
@@ -17,7 +14,7 @@ export class Snap {
         config: string | IDatabaseConfig
     ) {
         if (typeof config === "string") {
-            const url = new URL(arguments[0]);
+            const url = new URL(config);
             const dialect = url.protocol.replace(/:$/, '');
             const host = url.hostname;
             const database = url.pathname.replace(/^\//, '');
@@ -36,14 +33,14 @@ export class Snap {
             this.dbConfig = config;
         }
         switch (this.dbConfig.dialect) {
-            case 'pg':
-                this.db = new (require("./dialect/pg").default)(this.dbConfig)
-                break;
-            case 'sqlite':
-                this.db = new (require("./dialect/sqlite").default)(this.dbConfig);
-                break;
-            default:
-                throw new Error(`${this.dbConfig.dialect}: is not supported`);
+        case 'pg':
+            this.db = new (require("./dialect/pg").default)(this.dbConfig)
+            break;
+        case 'sqlite':
+            this.db = new (require("./dialect/sqlite").default)(this.dbConfig);
+            break;
+        default:
+            throw new Error(`${this.dbConfig.dialect}: is not supported`);
         }
     }
 
