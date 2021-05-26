@@ -1,0 +1,23 @@
+{
+  "name": "jest-sql-snap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest -- ./tests/users.spec.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "jest": "^26.6.3",
+    "node-fetch": "^2.6.1",
+    "pg": "^8.6.0",
+    "sql-snap": "file:.yalc/sql-snap",
+    "sqlite3": "^5.0.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.23"
+  }
+}

@@ -1,5 +1,3 @@
-
-
 import { Server } from 'ws'
 import WebSocket = require("ws");
 import { Snap } from './snap';
@@ -15,7 +13,7 @@ export class SnapServer {
         this.server = new Server({
             port: config.port
         });
-        this.snap = new Snap(config.dbConfig)
+        this.snap = new Snap(config.db)
         this.snap.connect()
         .then(() => {
             console.log("Ready");

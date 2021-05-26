@@ -4,3 +4,5 @@ tsconfig.json
 docs/
 scripts/
 .travis.yml
+.eslintrc.js
+example/
