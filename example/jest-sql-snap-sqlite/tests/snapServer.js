@@ -9,4 +9,3 @@ new Server({
     }
 });
 
-console.log("End")
