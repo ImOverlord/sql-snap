@@ -33,8 +33,7 @@
       }
   },
   "dependencies": {
-    "ws": "^7.2.1",
-    "pg": "^7.18.1"
+    "ws": "^7.2.1"
   },
   "bugs": {
     "url": "https://github.com/ImOverlord/sql-snap/issues"
