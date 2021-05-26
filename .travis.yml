@@ -3,7 +3,6 @@ language: node_js
 node_js:
   - '12'
   - '10'
-  - '8'
   - node
 
 cache: npm
@@ -14,6 +13,12 @@ install:
 script:
   - npm run test:lint
   - npm run build
+  - npm i -g yalc
+  - yalc publish
+  - cd example/jest-sql-snap-sqlite
+  - npm i
+  - yalc add sql-snap
+  - npm t
 
 jobs:
   include:

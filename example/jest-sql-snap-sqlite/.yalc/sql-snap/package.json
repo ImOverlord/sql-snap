@@ -5,6 +5,7 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "test:lint": "eslint ./src --ext .ts",
     "build": "tsc"
   },
@@ -13,26 +14,8 @@
   },
   "author": "ImOverlord",
   "license": "MIT",
-  "devDependencies": {
-    "@types/node": "^15.3.1",
-    "@types/pg": "^7.14.1",
-    "@types/sqlite3": "^3.1.7",
-    "@types/ws": "^7.2.1",
-    "@typescript-eslint/eslint-plugin": "^2.19.2",
-    "@typescript-eslint/parser": "^2.19.2",
-    "docsify": "^4.10.2",
-    "eslint": "^6.8.0",
-    "typescript": "^3.7.5"
-  },
-  "peerDependenciesMeta": {
-    "pg": {
-        "optional": true
-      },
-      "sqlite3": {
-        "optional": true
-      }
-  },
   "dependencies": {
+    "pg": "^7.18.1",
     "ws": "^7.2.1"
   },
   "bugs": {
@@ -45,5 +28,6 @@
     "Snap",
     "Test",
     "Jest"
-  ]
+  ],
+  "yalcSig": "9c12228a66e7c8a0fae2c61b2b97a447"
 }
