@@ -32,6 +32,7 @@ export class Snap {
         } else {
             this.dbConfig = config;
         }
+        this.dbConfig.dialect = this.parseDialect(this.dbConfig.dialect);
         switch (this.dbConfig.dialect) {
         case 'pg':
             this.db = new (require("./dialect/pg").default)(this.dbConfig)
@@ -42,6 +43,18 @@ export class Snap {
         default:
             throw new Error(`${this.dbConfig.dialect}: is not supported`);
         }
+    }
+
+    private parseDialect(dialect: string): string {
+        const dialectNames = {
+            'pg': ['postgres', 'pg'],
+            'sqlite': ['sqlite', 'sqlite3']
+        }
+        for (const key of Object.keys(dialectNames)) {
+            if (dialectNames[key].includes(dialect))
+                return key
+        }
+        throw new Error("Unknown Dialect");
     }
 
     public connect(): Promise<void> {
