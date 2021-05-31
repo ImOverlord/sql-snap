@@ -4,5 +4,5 @@ export interface IDatabaseConfig {
     username?: string;
     password?: string;
     database: string;
-    dialect: 'pg' | 'sqlite';
+    dialect: 'pg' | 'sqlite' | string;
 }
