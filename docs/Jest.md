@@ -43,7 +43,7 @@ const Server = require("sql-snap").SnapServer;
 new Server({
     port: 3001, // port the server should start on
     dbConfig: { // Config to connect to the database
-        connectionString: 'postgres://Heroes:Lifeaz2019@127.0.0.1:5432/DatabaseTest'
+        connectionString: 'postgres://username:password@127.0.0.1:5432/DatabaseTest'
     }
 });
 ```
