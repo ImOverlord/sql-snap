@@ -15,7 +15,7 @@
     "node-fetch": "^2.6.1",
     "pg": "^8.6.0",
     "sql-snap": "file:.yalc/sql-snap",
-    "sqlite3": "^5.0.2"
+    "sqlite3": "^5.0.3"
   },
   "devDependencies": {
     "@types/jest": "^26.0.23"
